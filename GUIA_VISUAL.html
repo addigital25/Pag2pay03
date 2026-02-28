@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Visual de Instalação - AfterPay</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header p { font-size: 1.2em; opacity: 0.9; }
+        .content { padding: 40px; }
+        .step {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .step:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+        }
+        .step-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+        .step h2 {
+            display: inline-block;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .step p {
+            color: #666;
+            line-height: 1.8;
+            margin: 10px 0;
+            padding-left: 55px;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0 15px 55px;
+            position: relative;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .code-block::before {
+            content: 'Terminal';
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: #667eea;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background 0.3s;
+        }
+        .copy-btn:hover { background: #5568d3; }
+        .copy-btn:active { background: #4451b8; }
+        .alert {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0 15px 55px;
+            border-radius: 5px;
+        }
+        .alert.success {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+        .alert.info {
+            background: #d1ecf1;
+            border-left-color: #17a2b8;
+        }
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0 20px 55px;
+            flex-wrap: wrap;
+        }
+        .tab {
+            padding: 10px 20px;
+            background: #e9ecef;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+        .tab.active {
+            background: #667eea;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+            margin-left: 55px;
+        }
+        .tab-content.active { display: block; }
+        .download-link {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            margin: 10px 0;
+            transition: background 0.3s;
+            font-weight: bold;
+        }
+        .download-link:hover { background: #218838; }
+        .footer {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            color: #666;
+        }
+        .checklist {
+            list-style: none;
+            padding-left: 55px;
+        }
+        .checklist li {
+            padding: 10px 0;
+            position: relative;
+            padding-left: 35px;
+        }
+        .checklist li::before {
+            content: '☐';
+            position: absolute;
+            left: 0;
+            font-size: 1.5em;
+            color: #667eea;
+        }
+        .screenshot {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 15px 0 15px 55px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Guia de Instalação AfterPay</h1>
+            <p>Siga este guia passo a passo para instalar a plataforma no seu computador</p>
+        </div>
+
+        <div class="content">
+            <!-- Passo 1 -->
+            <div class="step">
+                <span class="step-number">1</span>
+                <h2>Instalar Node.js</h2>
+                <p>Antes de tudo, você precisa ter o Node.js instalado no seu computador.</p>
+
+                <div class="tabs">
+                    <button class="tab active" onclick="showTab('windows', this)">Windows</button>
+                    <button class="tab" onclick="showTab('mac', this)">macOS</button>
+                    <button class="tab" onclick="showTab('linux', this)">Linux</button>
+                </div>
+
+                <div id="windows" class="tab-content active">
+                    <p>1. Acesse <a href="https://nodejs.org/" target="_blank">https://nodejs.org/</a></p>
+                    <p>2. Baixe a versão LTS (recomendada)</p>
+                    <p>3. Execute o instalador e clique em "Next" até finalizar</p>
+                </div>
+
+                <div id="mac" class="tab-content">
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                        <pre>brew install node</pre>
+                    </div>
+                    <p>Ou baixe direto do site: <a href="https://nodejs.org/" target="_blank">nodejs.org</a></p>
+                </div>
+
+                <div id="linux" class="tab-content">
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                        <pre>sudo apt update
+sudo apt install nodejs npm</pre>
+                    </div>
+                </div>
+
+                <p><strong>Verificar instalação:</strong></p>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                    <pre>node --version
+npm --version</pre>
+                </div>
+
+                <div class="alert success">
+                    ✅ Você deve ver algo como: v18.x.x ou v20.x.x
+                </div>
+            </div>
+
+            <!-- Passo 2 -->
+            <div class="step">
+                <span class="step-number">2</span>
+                <h2>Baixar o Projeto</h2>
+                <p>Certifique-se de ter a pasta <strong>afterpay-mvp</strong> completa no seu computador.</p>
+                <p>A estrutura deve ser assim:</p>
+                <div class="code-block">
+                    <pre>afterpay-mvp/
+├── backend/
+│   ├── server.js
+│   └── package.json
+├── frontend/
+│   ├── src/
+│   ├── package.json
+│   └── vite.config.js
+└── README.md</pre>
+                </div>
+            </div>
+
+            <!-- Passo 3 -->
+            <div class="step">
+                <span class="step-number">3</span>
+                <h2>Instalar Dependências do Backend</h2>
+                <p>Abra um terminal (Prompt de Comando no Windows ou Terminal no Mac/Linux):</p>
+
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                    <pre>cd afterpay-mvp/backend
+npm install</pre>
+                </div>
+
+                <div class="alert info">
+                    💡 Aguarde alguns segundos. Você verá: "added 71 packages"
+                </div>
+            </div>
+
+            <!-- Passo 4 -->
+            <div class="step">
+                <span class="step-number">4</span>
+                <h2>Instalar Dependências do Frontend</h2>
+                <p>Abra um <strong>SEGUNDO terminal</strong> (mantenha o primeiro aberto):</p>
+
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                    <pre>cd afterpay-mvp/frontend
+npm install</pre>
+                </div>
+
+                <div class="alert info">
+                    💡 Aguarde alguns segundos. Você verá: "added 131 packages"
+                </div>
+            </div>
+
+            <!-- Passo 5 -->
+            <div class="step">
+                <span class="step-number">5</span>
+                <h2>Executar o Backend</h2>
+                <p>No <strong>Terminal 1</strong>, execute:</p>
+
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                    <pre>cd afterpay-mvp/backend
+npm start</pre>
+                </div>
+
+                <div class="alert success">
+                    ✅ Você verá:<br>
+                    🚀 Servidor rodando na porta 3001<br>
+                    📊 API disponível em http://localhost:3001/api
+                </div>
+
+                <div class="alert">
+                    ⚠️ <strong>IMPORTANTE:</strong> Mantenha este terminal aberto!
+                </div>
+            </div>
+
+            <!-- Passo 6 -->
+            <div class="step">
+                <span class="step-number">6</span>
+                <h2>Executar o Frontend</h2>
+                <p>No <strong>Terminal 2</strong>, execute:</p>
+
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                    <pre>cd afterpay-mvp/frontend
+npm run dev</pre>
+                </div>
+
+                <div class="alert success">
+                    ✅ Você verá:<br>
+                    VITE v5.4.21 ready in 175 ms<br>
+                    ➜ Local: http://localhost:3000/
+                </div>
+
+                <div class="alert">
+                    ⚠️ <strong>IMPORTANTE:</strong> Mantenha este terminal aberto também!
+                </div>
+            </div>
+
+            <!-- Passo 7 -->
+            <div class="step">
+                <span class="step-number">7</span>
+                <h2>Acessar a Plataforma</h2>
+                <p>Abra seu navegador e acesse:</p>
+
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                    <pre>http://localhost:3000</pre>
+                </div>
+
+                <div class="alert success">
+                    🎉 <strong>Pronto!</strong> A plataforma AfterPay está funcionando!
+                </div>
+
+                <p><strong>Você deve ver:</strong></p>
+                <ul style="padding-left: 55px; margin-top: 10px;">
+                    <li>Catálogo com 3 produtos</li>
+                    <li>Botões "Comprar" em cada produto</li>
+                    <li>Seção "Como Funciona o AfterPay"</li>
+                    <li>Menu com "Produtos" e "Dashboard"</li>
+                </ul>
+            </div>
+
+            <!-- Checklist -->
+            <div class="step">
+                <span class="step-number">✓</span>
+                <h2>Checklist de Instalação</h2>
+                <ul class="checklist">
+                    <li>Node.js instalado (v18 ou superior)</li>
+                    <li>Pasta afterpay-mvp baixada</li>
+                    <li>Dependências do backend instaladas</li>
+                    <li>Dependências do frontend instaladas</li>
+                    <li>Backend rodando na porta 3001</li>
+                    <li>Frontend rodando na porta 3000</li>
+                    <li>Navegador aberto em http://localhost:3000</li>
+                    <li>Plataforma funcionando corretamente</li>
+                </ul>
+            </div>
+
+            <!-- Comandos Rápidos -->
+            <div class="step">
+                <span class="step-number">⚡</span>
+                <h2>Comandos Rápidos (Após Instalação)</h2>
+                <p>Para executar novamente no futuro:</p>
+
+                <p><strong>Terminal 1 - Backend:</strong></p>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                    <pre>cd afterpay-mvp/backend && npm start</pre>
+                </div>
+
+                <p><strong>Terminal 2 - Frontend:</strong></p>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                    <pre>cd afterpay-mvp/frontend && npm run dev</pre>
+                </div>
+
+                <p><strong>Para parar os servidores:</strong></p>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                    <pre>Pressione: Ctrl + C (ou Cmd + C no Mac)</pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3>🎉 Parabéns! Instalação Concluída!</h3>
+            <p>Agora você pode explorar a plataforma AfterPay</p>
+            <p style="margin-top: 20px;">
+                <strong>Próximos passos:</strong><br>
+                Teste fazer uma compra • Acesse o Dashboard • Gerencie pedidos
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName, element) {
+            // Esconder todos os conteúdos
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remover active de todas as tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Mostrar conteúdo selecionado
+            document.getElementById(tabName).classList.add('active');
+            element.classList.add('active');
+        }
+
+        function copyCode(button) {
+            const codeBlock = button.parentElement;
+            const code = codeBlock.querySelector('pre').textContent;
+
+            navigator.clipboard.writeText(code).then(() => {
+                button.textContent = '✓ Copiado!';
+                button.style.background = '#28a745';
+
+                setTimeout(() => {
+                    button.textContent = 'Copiar';
+                    button.style.background = '#667eea';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

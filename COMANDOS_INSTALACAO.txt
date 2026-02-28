@@ -1,0 +1,133 @@
+═══════════════════════════════════════════════════════════════
+  COMANDOS PARA INSTALAÇÃO - AFTERPAY MVP
+  Copie e cole estes comandos no seu terminal
+═══════════════════════════════════════════════════════════════
+
+▶ VERIFICAR SE NODE.JS ESTÁ INSTALADO
+═══════════════════════════════════════════════════════════════
+node --version
+npm --version
+
+
+▶ NAVEGAR ATÉ A PASTA DO PROJETO
+═══════════════════════════════════════════════════════════════
+# Windows
+cd C:\caminho\para\afterpay-mvp
+
+# Mac/Linux
+cd /caminho/para/afterpay-mvp
+
+
+▶ INSTALAR BACKEND (Execute em um terminal)
+═══════════════════════════════════════════════════════════════
+cd backend
+npm install
+
+
+▶ INSTALAR FRONTEND (Execute em OUTRO terminal)
+═══════════════════════════════════════════════════════════════
+cd frontend
+npm install
+
+
+▶ EXECUTAR BACKEND (Terminal 1 - Mantenha aberto)
+═══════════════════════════════════════════════════════════════
+cd backend
+npm start
+
+# Você verá:
+# 🚀 Servidor rodando na porta 3001
+# 📊 API disponível em http://localhost:3001/api
+
+
+▶ EXECUTAR FRONTEND (Terminal 2 - Mantenha aberto)
+═══════════════════════════════════════════════════════════════
+cd frontend
+npm run dev
+
+# Você verá:
+# VITE v5.4.21  ready in 175 ms
+# ➜  Local:   http://localhost:3000/
+
+
+▶ ACESSAR NO NAVEGADOR
+═══════════════════════════════════════════════════════════════
+http://localhost:3000
+
+
+▶ PARAR OS SERVIDORES
+═══════════════════════════════════════════════════════════════
+# Em cada terminal, pressione:
+Ctrl + C    (Windows/Linux)
+Cmd + C     (Mac)
+
+
+▶ COMANDOS TUDO-EM-UM (para quem já instalou)
+═══════════════════════════════════════════════════════════════
+
+# Terminal 1 - Backend
+cd afterpay-mvp/backend && npm start
+
+# Terminal 2 - Frontend
+cd afterpay-mvp/frontend && npm run dev
+
+
+▶ TESTAR A API DIRETAMENTE
+═══════════════════════════════════════════════════════════════
+# Listar produtos
+curl http://localhost:3001/api/products
+
+# Ver estatísticas
+curl http://localhost:3001/api/dashboard/stats
+
+# Listar pedidos
+curl http://localhost:3001/api/orders
+
+
+▶ SOLUÇÃO RÁPIDA DE PROBLEMAS
+═══════════════════════════════════════════════════════════════
+
+# Porta 3000 ocupada (Windows)
+netstat -ano | findstr :3000
+taskkill /PID <numero> /F
+
+# Porta 3000 ocupada (Mac/Linux)
+lsof -i :3000
+kill -9 <PID>
+
+# Porta 3001 ocupada (Windows)
+netstat -ano | findstr :3001
+taskkill /PID <numero> /F
+
+# Porta 3001 ocupada (Mac/Linux)
+lsof -i :3001
+kill -9 <PID>
+
+# Limpar cache do NPM (se houver problemas)
+npm cache clean --force
+
+# Reinstalar dependências (backend)
+cd backend
+rm -rf node_modules package-lock.json
+npm install
+
+# Reinstalar dependências (frontend)
+cd frontend
+rm -rf node_modules package-lock.json
+npm install
+
+
+═══════════════════════════════════════════════════════════════
+  RESUMO SUPER RÁPIDO
+═══════════════════════════════════════════════════════════════
+
+1. Instale Node.js (https://nodejs.org/)
+2. Baixe a pasta afterpay-mvp
+3. Abra 2 terminais
+4. Terminal 1: cd backend && npm install && npm start
+5. Terminal 2: cd frontend && npm install && npm run dev
+6. Navegador: http://localhost:3000
+
+PRONTO! 🎉
+
+═══════════════════════════════════════════════════════════════
